@@ -1,0 +1,23 @@
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+logs
+*.log
+
+# Dependency directories
+node_modules/
+jspm_packages/
+
+# Hardhat
+cache
+artifacts
+gas-report.txt
+coverage
+coverage.json
+typechain
+typechain-types
+
+# dotenv environment variables file
+.env

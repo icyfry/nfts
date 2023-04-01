@@ -1,0 +1,32 @@
+version: '3'
+
+dotenv: ['.env']
+
+tasks:
+
+  default:
+    cmds:
+      - task --list-all
+
+  init:
+    desc: setup the workspace
+    cmds:
+      - npm i
+
+  build-with-solc:
+    cmds:
+      - solc -o build/contracts --include-path ./node_modules/ --bin --abi --asm-json --ast-compact-json --asm --overwrite contracts/*.sol
+  
+  build:
+    dir: contracts
+    cmds:
+      - npx hardhat compile
+
+  deploy-local:
+    desc: deploy contracts to ganache
+    cmds:
+      - npx hardhat run --network localhost --show-stack-traces scripts/deploy-icyfry-nft.ts
+
+  test:
+    cmds:
+      - npx hardhat test --network localhost

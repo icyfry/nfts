@@ -1,0 +1,31 @@
+{
+    "name": "nft",
+    "version": "0.0.1",
+    "description": "icyfry nfts contracts",
+    "author": "icyfry",
+    "license": "MIT",
+    "dependencies": {
+        "@openzeppelin/contracts": "^4.8.2",
+        "@openzeppelin/contracts-upgradeable": "^4.8.2"
+    },
+    "devDependencies": {
+        "@nomicfoundation/hardhat-toolbox": "^2.0.2",
+        "ethers": "^5.7.2",
+        "hardhat": "^2.13.0",
+        "ts-node": "^10.9.1",
+        "typescript": "^5.0.2"
+    },
+    "scripts": {
+        "build": "task build",
+        "test": "task test",
+        "deploy": "task deploy-local"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/icyfry/nft.git"
+    },
+    "bugs": {
+        "url": "https://github.com/icyfry/nft/issues"
+    },
+    "homepage": "https://github.com/icyfry/nft#readme"
+}
