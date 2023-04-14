@@ -9,6 +9,15 @@ import { ethers } from 'hardhat'
 
 export type Address = string
 
+export interface Metas {
+  description: string
+  background_color: string
+  external_url: string
+  image: string
+  name: string
+  animation_url?: string
+}
+
 export async function deployContract (name: string): Promise<Contract> {
   const Contract: ContractFactory = await ethers.getContractFactory(name)
   const contract = await Contract.deploy()
@@ -25,10 +34,9 @@ export async function getTokenName (contract: Contract): Promise<string> {
   return contract.name()
 }
 
-export async function mint (contract: Contract, to: Address, uri: string): Promise<Set<string>> {
-  await contract.safeMint(to, uri)
+export async function mintWithTokenId (contract: Contract, to: Address, uri: string, tokenId: string): Promise<void> {
+  await contract.safeMint(to, tokenId, uri)
   console.log('NFT Minted for %s', to)
-  return await listTokensOfOwner(contract, to)
 }
 
 export async function listTokensOfOwner (contract: Contract, owner: Address): Promise<Set<string>> {
@@ -41,10 +49,11 @@ export async function listTokensOfOwner (contract: Contract, owner: Address): Pr
   const logs: Event[] = sentLogs.concat(receivedLogs)
     .sort(
       (a: Event, b: Event): number =>
-        // eslint-disable-next-line @typescript-eslint/strict-boolean-expressions
-        a.blockNumber - b.blockNumber ||
-        a.transactionIndex - b.transactionIndex
-    )
+        (
+          !Number.isNaN((a.blockNumber - b.blockNumber))
+            ? a.blockNumber - b.blockNumber
+            : a.transactionIndex - b.transactionIndex
+        ))
   const owned = new Set<string>()
   for (const e of logs) {
     if (e.args != null) {
@@ -59,8 +68,12 @@ export async function listTokensOfOwner (contract: Contract, owner: Address): Pr
 }
 
 export async function logNFTDetails (contract: Contract, id: string): Promise<void> {
-  const uri = await contract.tokenURI(id)
-  console.log(uri)
+  const uri: string = await contract.tokenURI(id)
+  const owner: string = await contract.ownerOf(id)
+  const name: string = await contract.name()
+  const symbol: string = await contract.symbol()
+  const address: string = contract.address
+  console.log('NFT (%s/%s/%s) | id:%s , uri:%s , owner:%s', name, symbol, address, id, uri, owner)
 }
 
 function addressEqual (a: string, b: string): boolean {
