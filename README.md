@@ -1,6 +1,5 @@
 # NFTs
-<img src="https://img.shields.io/github/languages/top/icyfry/nfts" />
-<img src="https://img.shields.io/badge/-Ethereum-005850?style=flat&logo=Ethereum">
+<img src="https://img.shields.io/github/languages/top/icyfry/nfts" /><img src="https://img.shields.io/badge/-Ethereum-005850?style=flat&logo=Ethereum">
 
 This repository contain code related to build and deploy NFTs on Ethereum 
 
@@ -8,10 +7,9 @@ This repository contain code related to build and deploy NFTs on Ethereum
 
 ### [ERC-721](https://eips.ethereum.org/EIPS/eip-721)
 
-* **IcyFryNFT**
+* **IcyFry Collection** (ICYFRYC)
 Used for POC & Experimentation (external data hosted on https://nft.icyfry.io/)
-
-** Implementation of [Opensea metadata-standards](https://docs.opensea.io/docs/metadata-standards)
+    * Implementation of [Opensea metadata-standards](https://docs.opensea.io/docs/metadata-standards)
 
 ## Development
 
@@ -21,7 +19,7 @@ Used for POC & Experimentation (external data hosted on https://nft.icyfry.io/)
 * [Hardhat](https://hardhat.org/)
 * [Task](https://taskfile.dev/installation/)
 * [ethers (js lib)](https://docs.ethers.org/v5/)
-* [openzeppelin](https://www.openzeppelin.com/)
+* [OpenZeppelin](https://www.openzeppelin.com/)
 * See `.vscode` for plugins recommendations
 
 ### Initial setup
@@ -40,7 +38,9 @@ PUBLIC_KEY=0x......
 * `lint`
 * `build`
 * `test`
-* `deploy`
-* `mint`
+**ICYFRYC**
+* `ICYFRYC-deploy-localhost`
+* `ICYFRYC-mint-localhost`
+* `ICYFRYC-sync-files`
 
 

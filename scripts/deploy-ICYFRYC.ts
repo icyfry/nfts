@@ -2,7 +2,7 @@ import { Contract } from 'ethers'
 import { deployContract } from './libs/ERC721Helper'
 
 // Contract to deploy
-const NFTName = 'IcyFryNFT'
+const NFTName = 'IcyFryCollection'
 
 async function main (): Promise<void> {
   const contract: Contract = await deployContract(NFTName)

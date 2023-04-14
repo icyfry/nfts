@@ -7,20 +7,16 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
-contract IcyFryNFT is ERC721,  ERC721URIStorage, ERC721Burnable, Ownable {
+contract IcyFryCollection is ERC721,  ERC721URIStorage, ERC721Burnable, Ownable {
     using Counters for Counters.Counter;
 
-    Counters.Counter private _tokenIdCounter;
-
-    constructor() ERC721("IcyFry", "ICY") {}
+    constructor() ERC721("IcyFry Collection", "ICYFRYC") {}
 
     function _baseURI() internal pure override returns (string memory) {
         return "https://nft.icyfry.io/";
     }
 
-    function safeMint(address to, string memory uri) public onlyOwner {
-        uint256 tokenId = _tokenIdCounter.current();
-        _tokenIdCounter.increment();
+    function safeMint(address to, uint256 tokenId, string memory uri) public onlyOwner {
         _safeMint(to, tokenId);
         _setTokenURI(tokenId, uri);
     }
