@@ -21,3 +21,6 @@ typechain-types
 
 # dotenv environment variables file
 .env
+
+# Generated
+metas/**/*.json
