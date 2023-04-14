@@ -10,12 +10,21 @@ import { ethers } from 'hardhat'
 export type Address = string
 
 export interface Metas {
+  name: string
   description: string
   background_color: string
   external_url: string
   image: string
-  name: string
+  image_data?: string
   animation_url?: string
+  youtube_url?: string
+  attributes?: MetasAttributes[]
+}
+
+export interface MetasAttributes {
+  trait_type: string
+  display_type?: string
+  value: string | number
 }
 
 export async function deployContract (name: string): Promise<Contract> {
