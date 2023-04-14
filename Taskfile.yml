@@ -13,20 +13,40 @@ tasks:
     cmds:
       - npm i
 
+  lint:
+    cmds:
+      - npm run lint
+
   build-with-solc:
+    desc: build contracts with solc
     cmds:
       - solc -o build/contracts --include-path ./node_modules/ --bin --abi --asm-json --ast-compact-json --asm --overwrite contracts/*.sol
   
   build:
+    desc: build contracts with hardhat
     dir: contracts
     cmds:
       - npx hardhat compile
 
-  deploy-local:
-    desc: deploy contracts to ganache
-    cmds:
-      - npx hardhat run --network localhost --show-stack-traces scripts/deploy-icyfry-nft.ts
-
   test:
+    desc: test contracts with hardhat
     cmds:
       - npx hardhat test --network localhost
+
+  # ICYFRYC IcyFryCollection
+
+  ICYFRYC-deploy-localhost:
+    desc: deploy contracts to ganache with hardhat
+    cmds:
+      - npx hardhat run --network localhost --show-stack-traces scripts/deploy-ICYFRYC.ts
+
+  ICYFRYC-mint-localhost:
+    desc: mint nft collection in ganache
+    cmds:
+      - npx hardhat run --network localhost --show-stack-traces scripts/mint-all-ICYFRYC.ts
+
+  ICYFRYC-sync-files:
+    desc: update images and metadata
+    cmds:
+      - aws s3 sync ./metas/ {{.ICYFRYCOLLECTION_S3}}
+      - aws s3 sync ./images/ {{.ICYFRYCOLLECTION_S3}}

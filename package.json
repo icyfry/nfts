@@ -21,8 +21,7 @@
     "scripts": {
         "build": "task build",
         "test": "task test",
-        "deploy": "task deploy-local",
-        "lint": "eslint --fix scripts/*.ts scripts/**/*.ts"
+        "lint": "eslint --fix scripts/*.ts scripts/**/*.ts *.ts"
     },
     "repository": {
         "type": "git",
